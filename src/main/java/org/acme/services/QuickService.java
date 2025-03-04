@@ -5,7 +5,6 @@ import org.acme.domain.data.dto.response.ResponseDto;
 import org.acme.domain.ports.QuickServicePort;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
@@ -50,8 +49,9 @@ public class QuickService implements QuickServicePort {
                 list.set(j, temp);
             }
         }
+        int temp = list.get(i + 1);
         list.set(i + 1, list.get(high));
-        list.set(high, list.get(i + 1));
+        list.set(high, temp);
         return i + 1;
     }
 }
