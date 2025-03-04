@@ -18,17 +18,19 @@ public class QuickService implements QuickServicePort {
         int n = requestDto.getN();
         List<Integer> list = new ArrayList<>();
         Logger logger = Logger.getLogger(QuickService.class.getName());
-        String startTime = new SimpleDateFormat("HH:mm:ss.SSS").format(new java.util.Date(System.currentTimeMillis()));
-        logger.info(startTime);
         for (int i = 0; i < n; i++) {
             Random r = new Random();
-            list.add(r.nextInt(0,1000));
+            list.add(r.nextInt(0,n));
         }
+        long startTime = System.nanoTime();
+        logger.info(String.valueOf(startTime));
         logger.info(String.valueOf(list));
         quicksort(list, 0, list.size() - 1);
+        long endTime = System.nanoTime();
+        long finalTime = endTime - startTime;
+        logger.info(String.valueOf(finalTime));
         logger.info(String.valueOf(list));
-        String finalTime =new SimpleDateFormat("HH:mm:ss.SSS").format(new java.util.Date(System.currentTimeMillis()));
-        logger.info(finalTime);
+        logger.info("Execution time in seconds: " + finalTime / 1_000_000_000.0);
             return new ResponseDto(list);
     }
 
